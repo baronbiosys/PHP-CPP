@@ -454,6 +454,8 @@ public:
      */
     double floatValue() const;
 
+    int64_t millisecondsValue() const;
+
     /**
      *  Convert the object to a vector
      *

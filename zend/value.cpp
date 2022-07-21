@@ -1830,6 +1830,26 @@ std::string Value::debugZval() const
     return s;
 }
 
+typedef struct {
+	bool        initialized;
+	int64_t     milliseconds;
+	HashTable*  properties;
+	zend_object std;
+} php_phongo_utcdatetime_t;
+
+static inline php_phongo_utcdatetime_t* php_utcdatetime_fetch_object(zend_object* obj)
+{
+	return (php_phongo_utcdatetime_t*) ((char*) obj - XtOffsetOf(php_phongo_utcdatetime_t, std));
+}
+
+int64_t Value::millisecondsValue() const
+{
+    auto mongoDate = php_utcdatetime_fetch_object(Z_OBJ_P(_val));
+    return mongoDate->milliseconds;
+}
+
+
+
 /**
  *  Custom output stream operator
  *  @param  stream
