@@ -218,7 +218,7 @@ public:
      *  @param  count
      *  @return int
      */
-    static int countElements(ZEND_OBJECT_OR_ZVAL object, zend_long *count);
+    static zend_result countElements(ZEND_OBJECT_OR_ZVAL object, zend_long *count);
 
     /**
      *  Function that is called when the object is used as an array in PHP
@@ -331,7 +331,7 @@ public:
 #if PHP_VERSION_ID < 80000
     static int getClosure(ZEND_OBJECT_OR_ZVAL object, zend_class_entry **entry, zend_function **func, zend_object **object_ptr);
 #else
-    static int getClosure(ZEND_OBJECT_OR_ZVAL object, zend_class_entry **entry, zend_function **func, zend_object **object_ptr, zend_bool check_only);
+    static zend_result getClosure(ZEND_OBJECT_OR_ZVAL object, zend_class_entry **entry, zend_function **func, zend_object **object_ptr, zend_bool check_only);
 #endif
 
     /**
@@ -341,7 +341,7 @@ public:
      *  @param  type
      *  @return int
      */
-    static int cast(ZEND_OBJECT_OR_ZVAL object, zval *retval, int type);
+    static zend_result cast(ZEND_OBJECT_OR_ZVAL object, zval *retval, int type);
 
     /**
      *  Function to compare two objects
